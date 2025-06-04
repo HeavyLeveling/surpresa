@@ -1,0 +1,147 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #0077b6;
+    color: white;
+    padding: 40px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.8em;
+}
+
+.historia, .fotos, .musica {
+    padding: 30px 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.fotos img {
+    width: 250px;
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.fotos img:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: #111;
+    padding: 20px;
+    font-style: italic;
+    color: #fff;
+}
+
+audio {
+    margin-top: 10px;
+    width: 90%;
+    max-width: 400px;
+}
+
+/* Botão "Clica aqui, amor 💙" */
+.surpresa {
+    margin: 30px 0;
+}
+
+.botao-amor {
+    background-color: #00b4d8;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.botao-amor:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .fotos img {
+        width: 90%;
+    }
+
+    audio {
+        width: 95%;
+    }
+}
+
+/* Corações flutuando */
+body::before {
+    content: "🖤 🖤 🖤 🖤 🖤";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    animation: coracoes 25s linear infinite;
+    font-size: 2.5em;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #000, 
+        1px -1px 0 #000, 
+        -1px 1px 0 #000, 
+        1px 1px 0 #000;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+@keyframes coracoes {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+/* Carrossel de fotos */
+.carrossel {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto;
+    height: 500px;
+    overflow: hidden;
+}
+
+.slides {
+    position: relative;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    max-height: 100%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    object-fit: contain;
+}
+
+.slide.ativo {
+    opacity: 1;
+    z-index: 1;
+}
+
+.slide:hover {
+    transform: none !important;
+}
