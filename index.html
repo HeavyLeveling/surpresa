@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Leonardo ❤️ Isabella</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
@@ -12,9 +13,36 @@
         <p id="contador-dias"></p>
     </header>
 
-    <div class="surpresa">
-        <a href="#historia" class="botao-amor">Clica aqui, amor 💙</a>
-    </div>
+    <div class="coraçoes-container"></div>
+
+    <script>
+        const container = document.querySelector(".coraçoes-container");
+    
+        function criarCoraçao() {
+            const coraçao = document.createElement("div");
+            coraçao.classList.add("coraçao");
+            coraçao.textContent = "💙";
+    
+            // Posição horizontal aleatória
+            coraçao.style.left = Math.random() * 100 + "vw";
+    
+            // Duração da animação aleatória (entre 3 e 5s)
+            coraçao.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    
+            // Tamanho aleatório (entre 24px e 48px)
+            const tamanho = Math.floor(Math.random() * 24) + 24;
+            coraçao.style.fontSize = `${tamanho}px`;
+    
+            container.appendChild(coraçao);
+    
+            setTimeout(() => {
+                coraçao.remove();
+            }, 5000);
+        }
+    
+        setInterval(criarCoraçao, 300);
+    </script>
+    
 
     <section class="historia" id="historia">
         <h2>Nossa História</h2>
@@ -38,7 +66,7 @@
     <section class="musica">
         <h2>Nosso Som 💙</h2>
         <p>“Seu Astral” — Jorge e Mateus</p>
-        <audio controls autoplay>
+        <audio controls>
             <source src="seu-astral.mp3" type="audio/mpeg">
             Seu navegador não suporta áudio.
         </audio>
@@ -90,3 +118,4 @@
     
 </body>
 </html>
+
