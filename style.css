@@ -24,7 +24,8 @@ header h1 {
     margin: auto;
 }
 
-.fotos img {
+/* === Galeria de Fotos === */
+.fotos img:not(.slide) {
     width: 250px;
     margin: 10px;
     border-radius: 15px;
@@ -38,12 +39,13 @@ header h1 {
     z-index: 0;
 }
 
-.fotos img:hover, 
-.fotos img:focus {
+.fotos img:not(.slide):hover, 
+.fotos img:not(.slide):focus {
     transform: scale(1.05);
     z-index: 10;
 }
 
+/* === Footer === */
 footer {
     background-color: #111;
     padding: 20px;
@@ -57,7 +59,7 @@ audio {
     max-width: 400px;
 }
 
-/* Botão "Clica aqui, amor 💙" */
+/* === Botão === */
 .surpresa {
     margin: 30px 0;
 }
@@ -78,74 +80,66 @@ audio {
     box-shadow: 0 6px 14px rgba(0,0,0,0.3);
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
-      header {
-        padding: 25px 15px;
-    }
-
-    header h1 {
-        font-size: 2em;
-    }
-
-    header p,
-    .historia p,
-    .musica p,
-    footer p {
-        font-size: 1em;
-        padding: 0 15px;
-    }
-
-    .historia, .fotos, .musica {
-        padding: 20px 10px;
-    }
-
-    .carrossel {
-        max-width: 100%;
-        height: 300px;
-    }
-
-    .slide {
-        height: 100%;
-        max-height: 100%;
-        object-fit: cover;
-    }
-
-    .fotos img {
-        width: 90%;
-        margin: 10px auto;
-    }
-
-    .botao-amor {
-        padding: 12px 20px;
-        font-size: 1em;
-    }
-
-    audio {
-        width: 95%;
-        display: block;
-        margin: 0 auto;
-    }
-    body::before {
-        font-size: 2em;
-    }
-
-    .coraçao {
-        font-size: 28px;
-    }
-
+/* === Carrossel === */
+.carrossel {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto;
+    height: 500px;
+    overflow: hidden;
 }
 
-@media (hover: none) and (pointer: coarse) {
-    .fotos img:hover, 
-    .fotos img:focus {
-        transform: none !important;
-        z-index: 0 !important;
-    }
+.slides {
+    position: relative;
+    height: 100%;
 }
 
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+}
 
-/* Corações flutuando */
+.slide.ativo {
+    opacity: 1;
+    z-index: 10;
+}
+
+.slide:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* === Indicadores === */
+.indicadores {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.indicadores .bolinha {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #888;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.indicadores .bolinha.ativo {
+    background-color: #00b4d8;
+}
+
+/* === Corações Flutuando === */
 body::before {
     content: "";
     position: fixed;
@@ -169,44 +163,6 @@ body::before {
 @keyframes coracoes {
     0% { transform: translateY(0); }
     100% { transform: translateY(100vh); }
-}
-/* Carrossel de fotos */
-.carrossel {
-    position: relative;
-    max-width: 600px;
-    margin: 20px auto;
-    height: 500px;
-    overflow: hidden;
-}
-
-.slides {
-    position: relative;
-    height: 100%;
-}
-
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 0;
-}
-
-.slide.ativo {
-    opacity: 1;
-    z-index: 10;
-}
-
-.slide:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
 }
 
 .coraçoes-container {
@@ -240,22 +196,59 @@ body::before {
     }
 }
 
-.indicadores {
-    text-align: center;
-    margin-top: 15px;
+/* === Responsivo === */
+@media (max-width: 600px) {
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    .historia, .fotos, .musica {
+        padding: 20px 10px;
+    }
+
+    .carrossel {
+        max-width: 100%;
+        height: 300px;
+    }
+
+    .slide {
+        object-fit: cover;
+    }
+
+    .fotos img:not(.slide) {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .botao-amor {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    audio {
+        width: 95%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    body::before {
+        font-size: 2em;
+    }
+
+    .coraçao {
+        font-size: 28px;
+    }
 }
 
-.indicadores .bolinha {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin: 0 5px;
-    background-color: #888;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
+@media (hover: none) and (pointer: coarse) {
+    .fotos img:hover, 
+    .fotos img:focus {
+        transform: none !important;
+        z-index: 0 !important;
+    }
 }
 
-.indicadores .bolinha.ativo {
-    background-color: #00b4d8;
-}
