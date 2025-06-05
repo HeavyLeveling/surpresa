@@ -10,6 +10,8 @@
     <header>
         <h1>Leonardo & Isabella</h1>
         <p>Juntos desde <strong>25 de setembro de 2024</strong></p>
+
+        <div id="frase-amor">💖 Eu te amo há: </div>
         <p id="contador-dias"></p>
     </header>
 
@@ -84,24 +86,25 @@
     </footer>
 
     <script>
-        const dataInicio = new Date(2024, 8, 25); // Setembro = 8
-    
-        function atualizarContador() {
-            const agora = new Date();
-            const diff = agora - dataInicio;
-    
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutos = Math.floor((diff / (1000 * 60)) % 60);
-            const segundos = Math.floor((diff / 1000) % 60);
-    
-            document.getElementById("contador-dias").textContent =
-                `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 💕`;
-        }
-    
-        setInterval(atualizarContador, 1000);
-        atualizarContador(); // atualizar logo que carregar
-    </script>
+    const dataInicio = new Date(2024, 8, 25); // Setembro = 8 (começa do 0)
+
+    function atualizarContador() {
+        const agora = new Date();
+        const diff = agora - dataInicio;
+
+        const anos = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+        const dias = Math.floor((diff / (1000 * 60 * 60 * 24)) % 365.25);
+        const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((diff / (1000 * 60)) % 60);
+        const segundos = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("contador-dias").textContent =
+            `${anos} anos, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 💖`;
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+</script>
     
     <script>
 
@@ -140,6 +143,10 @@ setInterval(() => {
 }, 4000);
         
     </script>
+    
+</body>
+</html>
+
     
 </body>
 </html>
